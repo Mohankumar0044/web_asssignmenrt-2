@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Student Registration Portal</h1>
+        <p>Student Admission Management System</p>
+        <nav>
+            <a href="index.html">Register</a>
+            <a href="list.html">View Registration List</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Student Registration Form</h2>
+        <p class="subtitle">Fill in your details below</p>
+
+        <form id="registrationForm">
+            <label for="name">Student Name</label>
+            <input type="text" id="name" placeholder="Enter full name">
+            <span class="error" id="nameError"></span>
+
+            <label for="roll">Roll Number</label>
+            <input type="text" id="roll" placeholder="Enter roll number">
+            <span class="error" id="rollError"></span>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter email">
+            <span class="error" id="emailError"></span>
+
+            <label for="course">Course</label>
+            <select id="course">
+                <option value="">Select Course</option>
+                <option value="CSE">Computer Science (CSE)</option>
+                <option value="IT">Information Technology (IT)</option>
+                <option value="ECE">Electronics (ECE)</option>
+                <option value="EEE">Electrical (EEE)</option>
+                <option value="MECH">Mechanical</option>
+            </select>
+            <span class="error" id="courseError"></span>
+
+            <label for="password">Password</label>
+            <input type="password" id="password"
+                   placeholder="Minimum 8 characters">
+            <span class="error" id="passwordError"></span>
+
+            <label for="document">Upload Student Document</label>
+            <input type="file" id="document" accept=".pdf,.jpg,.jpeg,.png">
+            <span class="error" id="documentError"></span>
+
+            <button type="submit">Register Student</button>
+        </form>
+
+        <p id="success"></p>
+
+        <a class="button-link" href="list.html">
+            View Registration List
+        </a>
+    </main>
+
+    <footer>
+        <p>Student Registration Portal | 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

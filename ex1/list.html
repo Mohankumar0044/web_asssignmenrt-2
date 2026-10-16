@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Registration List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Student Registration Portal</h1>
+        <p>Registered Student Records</p>
+        <nav>
+            <a href="index.html">Register Student</a>
+            <a href="list.html">Registration List</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>View Registration List</h2>
+        <p id="count"></p>
+        <div id="studentList"></div>
+
+        <a class="button-link" href="index.html">
+            Back to Registration
+        </a>
+    </main>
+
+    <footer>
+        <p>Student Registration Portal | 2026</p>
+    </footer>
+
+    <script>
+        const students = JSON.parse(
+            localStorage.getItem("students") || "[]"
+        );
+
+        const studentList = document.getElementById("studentList");
+
+        document.getElementById("count").textContent =
+            "Total Registered Students: " + students.length;
+
+        function addText(parent, tag, value) {
+            const element = document.createElement(tag);
+            element.textContent = value;
+            parent.appendChild(element);
+            return element;
+        }
+
+        if (students.length === 0) {
+            addText(studentList, "p",
+                "No registrations found. Please register a student first.");
+        }
+
+        students.forEach(function(student, index) {
+            const card = document.createElement("div");
+            card.className = "student-card";
+
+            addText(card, "h3", "Registration " + (index + 1));
+            addText(card, "p", "Name: " + student.name);
+            addText(card, "p", "Roll Number: " + student.roll);
+            addText(card, "p", "Email: " + student.email);
+            addText(card, "p", "Course: " + student.course);
+            addText(card, "p", "Document: " + student.document);
+
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "delete-btn";
+            deleteButton.textContent = "Delete Registration";
+
+            deleteButton.addEventListener("click", function() {
+                if (confirm("Delete this registration?")) {
+                    students.splice(index, 1);
+
+                    localStorage.setItem(
+                        "students",
+                        JSON.stringify(students)
+                    );
+
+                    location.reload();
+                }
+            });
+
+            card.appendChild(deleteButton);
+            studentList.appendChild(card);
+        });
+    </script>
+</body>
+</html>
